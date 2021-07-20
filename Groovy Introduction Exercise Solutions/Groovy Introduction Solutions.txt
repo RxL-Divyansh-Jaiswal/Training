@@ -1,0 +1,164 @@
+Ans 2:-
+groovy> class Person{ 
+groovy>     String name 
+groovy>     int age 
+groovy>     char gender 
+groovy>     String address 
+groovy>     int empId 
+groovy>     String company 
+groovy>     int salary 
+groovy> } 
+groovy> Person p = new Person() 
+groovy> p.name = "Divyansh" 
+groovy> p.age = 22 
+groovy> p.gender = 'M' 
+groovy> p.address = "Rohini, New Delhi" 
+groovy> p.empId = 101 
+groovy> p.company = "RxLogix" 
+groovy> p.salary = 5000 
+groovy> println "${p.name} , ${p.age} , ${p.gender} lives in ${p.address}. His employee id is : ${p.empId} working at ${p.company} and earns ${p.salary}." 
+ 
+Divyansh , 22 , M lives in Rohini, New Delhi. His employee id is : 101 working at RxLogix and earns 5000.
+--------------------------------------------------------------------------------
+Ans 3:-
+groovy> for(int i = 0; i < 4; i++){ 
+groovy>     int j = (int)(Math.pow(2,i)) 
+groovy>     j.times{print '*'} 
+groovy>     println "" 
+groovy> } 
+ 
+*
+**
+****
+********
+------------------------------------------------------------------------------
+Ans 4:-
+groovy> class Person{  
+groovy>      String name  
+groovy>      int age  
+groovy>      char gender  
+groovy>      String address  
+groovy>      int empId  
+groovy>      String company  
+groovy>      int salary 
+groovy>       
+groovy>      @Override 
+groovy>     public String toString() { 
+groovy>         return name + " is a man aged " + age + " who lives at" + address + ". He works for " + company + " with employee id " + empId + " and draws " + salary + " lots of money!!!!" 
+groovy>     }  
+groovy> }  
+groovy> Person p = new Person()  
+groovy> p.name = "Divyansh"  
+groovy> p.age = 22  
+groovy> p.gender = 'M'  
+groovy> p.address = "Rohini, New Delhi"  
+groovy> p.empId = 101  
+groovy> p.company = "RxLogix"  
+groovy> p.salary = 5000  
+groovy> println p.toString() 
+ 
+Divyansh is a man aged 22 who lives atRohini, New Delhi. He works for RxLogix with employee id 101 and draws 5000 lots of money!!!!
+-------------------------------------------------------------------------------
+Ans 6:-
+groovy> class HourMinute{ 
+groovy>     private int hours 
+groovy>     private int minutes 
+groovy>      
+groovy>     HourMinute(h,m){ 
+groovy>         this.hours = h 
+groovy>         this.minutes = m 
+groovy>     } 
+groovy>      
+groovy>     def plus(HourMinute other){ 
+groovy>         int totalHours = this.hours + other.hours 
+groovy>         int totalMinutes = this.minutes + other.minutes 
+groovy>         if(totalMinutes >= 60){ 
+groovy>             totalHours++ 
+groovy>             totalMinutes = totalMinutes % 60 
+groovy>         } 
+groovy>          
+groovy>         return new HourMinute(totalHours, totalMinutes) 
+groovy>     } 
+groovy>      
+groovy>     def minus(HourMinute other){ 
+groovy>         if(this.minutes > other.minutes){ 
+groovy>             --other.hours 
+groovy>             other.minutes += 60 
+groovy>         } 
+groovy>          
+groovy>         int diffMinutes = other.minutes - this.minutes 
+groovy>         int diffHours = other.hours - this.hours 
+groovy>          
+groovy>         return new HourMinute(diffHours,diffMinutes) 
+groovy>     } 
+groovy>      
+groovy>     @Override 
+groovy>     public String toString() { 
+groovy>         return hours + " hours and " + minutes + " minutes." 
+groovy>     } 
+groovy> } 
+groovy> HourMinute t1 = new HourMinute(4,40) 
+groovy> HourMinute t2 = new HourMinute(8,45) 
+groovy> HourMinute t3 = t1 + t2 
+groovy> HourMinute t4 = t1 - t2 
+groovy> println "Sum of both time result in: " + t3.toString() 
+groovy> println "Difference of both time result in: " + t4.toString() 
+ 
+Sum of both time result in: 13 hours and 25 minutes.
+Difference of both time result in: 4 hours and 5 minutes.
+------------------------------------------------------------------------------
+Ans 7:-
+groovy> List multipliers = [1,2,3,4,5,6,7,8,9,10] 
+groovy> List first = multipliers*.multiply(3) 
+groovy> println "First Way: " 
+groovy> first.each{println it} 
+groovy> List second = multipliers.collect{it * 3} 
+groovy> println "Second Way: " 
+groovy> first.each{println it} 
+groovy> List third = [] 
+groovy> multipliers.collect(third){it * 3} 
+groovy> println "Third Way: " 
+groovy> first.each{println it} 
+ 
+First Way: 
+3
+6
+9
+12
+15
+18
+21
+24
+27
+30
+Second Way: 
+3
+6
+9
+12
+15
+18
+21
+24
+27
+30
+Third Way: 
+3
+6
+9
+12
+15
+18
+21
+24
+27
+30
+Result: [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]
+------------------------------------------------------------------------------
+Ans 8:-
+groovy> int index = ['a', 'b', 'c', 'd', 'e'].findIndexOf{ 
+groovy>     it in ['c', 'e', 'g'] 
+groovy> } 
+groovy> println "Index of first element matching the criteria: " + index 
+ 
+Index of first element matching the criteria: 2
