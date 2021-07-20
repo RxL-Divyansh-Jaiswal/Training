@@ -1,0 +1,517 @@
+Ans 0:-
+groovy> List l = [] 
+groovy> l[11] = "myElement" 
+groovy> println l[11] 
+groovy> println l.get(5) 
+groovy> println l 
+ 
+myElement
+null
+[null, null, null, null, null, null, null, null, null, null, null, myElement]
+----------------------------------------------------------------------------------
+Ans 1 :-
+groovy> Range range = 1..10 
+groovy> List l = range.findAll{it % 2 == 0} 
+ 
+Result: [2, 4, 6, 8, 10]
+----------------------------------------------------------------------------------
+Ans 2:-
+groovy> List l = [1,1,1,2,2,3,4,5,5,5,6,6,7,8,8,8,9,9,9,10] 
+groovy> println l.unique() 
+ 
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+-----------------------------------------------------------------------------------
+Ans 3:-
+groovy> List l1 = [11,12,13,14] 
+groovy> List l2 = [13,14,15] 
+groovy> List l3 = l1 + l2 
+groovy> List l4 = l3 - l1 
+ 
+Result: [15]
+------------------------------------------------------------------------------------
+Ans 4:-
+groovy> Set s1 = [1,2,3,4,5,6,7,9,10] 
+groovy> Set s2 = [3,4,7,8,9,11,12,18] 
+groovy> s1.intersect(s2) 
+ 
+Result: [3, 4, 7, 9]
+------------------------------------------------------------------------------------
+Ans 5:-
+groovy> List l1 = [1,2,3,4,5,6,7,8,9,10] 
+groovy> List l2 = [] 
+groovy> for(int i = 0; i < l1.size(); i++){ 
+groovy>     if(i % 2 == 0){ 
+groovy>         l2 << l1.get(i) 
+groovy>     } 
+groovy> } 
+groovy> println l2 
+ 
+[1, 3, 5, 7, 9]
+------------------------------------------------------------------------------------
+Ans 6:-
+groovy> List l = [1,2,3,"element1",0.3,[2,4,6], 0..10] 
+groovy> l.each{println it.class} 
+groovy> l.get(6).get(9) 
+ 
+class java.lang.Integer
+class java.lang.Integer
+class java.lang.Integer
+class java.lang.String
+class java.math.BigDecimal
+class java.util.ArrayList
+class groovy.lang.IntRange
+Result: 9
+--------------------------------------------------------------------------------------
+Ans 7:-
+groovy> List l = [14,12,11,10,16,15,12,10,99,90,14,16,35] 
+groovy> l.unique().sort { a, b -> a == b ? 0 : a > b ? -1 : 1 } 
+ 
+Result: [99, 90, 35, 16, 15, 14, 12, 11, 10]
+--------------------------------------------------------------------------------------
+Ans 8:-
+groovy> class Employee{ 
+groovy>     String name 
+groovy>     int age 
+groovy>     int salary 
+groovy>      
+groovy>     Employee(name,age,salary){ 
+groovy>         this.name = name 
+groovy>         this.age = age 
+groovy>         this.salary = salary 
+groovy>     } 
+groovy> } 
+groovy> List emp = [] 
+groovy> emp << new Employee("Divyansh",22,10000) 
+groovy> emp << new Employee("Bhupender",21,5000) 
+groovy> emp << new Employee("Hardik",22,8000) 
+groovy> emp << new Employee("Manish",24,7500) 
+groovy> emp << new Employee("Sarthak",21,5000) 
+groovy> emp << new Employee("Rahul",21,4000) 
+groovy> emp << new Employee("Uddesh",22,3800) 
+groovy> emp << new Employee("Nikhil",26,8000) 
+groovy> emp << new Employee("Payal",20,6000) 
+groovy> emp << new Employee("Himanshi",18,4500) 
+groovy> println "Employees with salary < 5000" 
+groovy> emp.findAll{ it.salary < 5000}.each{println it.name} 
+groovy> println "+++++++++++++++++++++++++++++++++++++++++++" 
+groovy> Comparator c1 = { e1, e2 -> e1.age == e2.age ? 0 : e1.age < e2.age ? -1 : 1 } 
+groovy> Collections.sort(emp,c1) 
+groovy> println "Youngest:  " + emp.get(0).name 
+groovy> println "Oldest:  " + emp.get(emp.size() - 1).name 
+groovy> println "+++++++++++++++++++++++++++++++++++++++++++" 
+groovy> Comparator c2 = { e1, e2 -> e1.salary == e2.salary ? 0 : e1.salary > e2.salary ? -1 : 1 } 
+groovy> Collections.sort(emp,c2) 
+groovy> println "Highest Salary Employee:  " + emp.get(0).name 
+groovy> println "+++++++++++++++++++++++++++++++++++++++++++" 
+groovy> println "All Employees" 
+groovy> println emp.collect{ it.name } 
+ 
+Employees with salary < 5000
+Rahul
+Uddesh
+Himanshi
++++++++++++++++++++++++++++++++++++++++++++
+Youngest:  Himanshi
+Oldest:  Nikhil
++++++++++++++++++++++++++++++++++++++++++++
+Highest Salary Employee:  Divyansh
++++++++++++++++++++++++++++++++++++++++++++
+All Employees
+[Divyansh, Hardik, Nikhil, Manish, Payal, Bhupender, Sarthak, Himanshi, Rahul, Uddesh]
+---------------------------------------------------------------------------------------------
+Ans 9:-
+groovy> String s = "This string needs to be split" 
+groovy> println s.tokenize(" ") 
+groovy> println s.tokenize() 
+groovy> println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" 
+groovy> println s.split(" ") 
+groovy> println s.split(/s/) 
+groovy> println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" 
+groovy> String s1 = "are.you.trying.to.split.me.mister?" 
+groovy> println s1.tokenize(".") 
+groovy> println s1.split(".") 
+ 
+[This, string, needs, to, be, split]
+[This, string, needs, to, be, split]
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[This, string, needs, to, be, split]
+[Thi,  , tring need,  to be , plit]
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[are, you, trying, to, split, me, mister?]
+[]
+----------------------------------------------------------------------------------------------
+Ans 10:-
+groovy> Range range = 1..10 
+groovy> println range.from 
+groovy> println range.get(1) 
+groovy> println range.to 
+ 
+1
+2
+10
+----------------------------------------------------------------------------------------------
+Ans 11:-
+groovy> List multiplier = [1,2,3,4,5,6,7,8,9,10] 
+groovy> List table2 = multiplier.collect{it -> println "2 x ${it} = " + it * 2 } 
+groovy> println "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" 
+groovy> List table12 = multiplier.collect{it -> println "12 x ${it} = " + it * 12 } 
+ 
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+2 x 4 = 8
+2 x 5 = 10
+2 x 6 = 12
+2 x 7 = 14
+2 x 8 = 16
+2 x 9 = 18
+2 x 10 = 20
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+12 x 1 = 12
+12 x 2 = 24
+12 x 3 = 36
+12 x 4 = 48
+12 x 5 = 60
+12 x 6 = 72
+12 x 7 = 84
+12 x 8 = 96
+12 x 9 = 108
+12 x 10 = 120
+---------------------------------------------------------------------------------------------
+Ans 12:-
+groovy> List l = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] 
+groovy> l.eachWithIndex{elem,ind -> if(ind > 9){ println elem}} 
+ 
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+----------------------------------------------------------------------------------------------
+Ans 13:-
+groovy> String str = "this is a test string to search for all occurances of an alphabet" 
+groovy> List l = str.toList() 
+groovy> println l.count('a') 
+ 
+7
+----------------------------------------------------------------------------------------------
+Ans 14:-
+groovy> for(int i in 1..100){ 
+groovy>     if(i % 3 == 0 && i % 5 != 0){ 
+groovy>         println "Fizz" 
+groovy>     }else if(i % 3 != 0 && i % 5 == 0){ 
+groovy>         println "Buzz" 
+groovy>     }else if(i % 3 == 0 && i % 5 == 0){ 
+groovy>         println "FizzBuzz" 
+groovy>     }else{ 
+groovy>         println i 
+groovy>     } 
+groovy> } 
+ 
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz
+16
+17
+Fizz
+19
+Buzz
+Fizz
+22
+23
+Fizz
+Buzz
+26
+Fizz
+28
+29
+FizzBuzz
+31
+32
+Fizz
+34
+Buzz
+Fizz
+37
+38
+Fizz
+Buzz
+41
+Fizz
+43
+44
+FizzBuzz
+46
+47
+Fizz
+49
+Buzz
+Fizz
+52
+53
+Fizz
+Buzz
+56
+Fizz
+58
+59
+FizzBuzz
+61
+62
+Fizz
+64
+Buzz
+Fizz
+67
+68
+Fizz
+Buzz
+71
+Fizz
+73
+74
+FizzBuzz
+76
+77
+Fizz
+79
+Buzz
+Fizz
+82
+83
+Fizz
+Buzz
+86
+Fizz
+88
+89
+FizzBuzz
+91
+92
+Fizz
+94
+Buzz
+Fizz
+97
+98
+Fizz
+Buzz
+---------------------------------------------------------------------------------------------
+Ans 15:-
+groovy> class Node{ 
+groovy>     int data 
+groovy>     Node next 
+groovy>      
+groovy>     Node(elem){ 
+groovy>         this.data = elem 
+groovy>     } 
+groovy> } 
+groovy> class StackUsingLL{ 
+groovy>     Node head; 
+groovy>     private int size; 
+groovy>     StackUsingLL(){ 
+groovy>         head = null; 
+groovy>         size = 0; 
+groovy>     } 
+groovy>     int size(){ 
+groovy>         return size; 
+groovy>     } 
+groovy>     boolean isEmpty(){ 
+groovy>         return size == 0; 
+groovy>     } 
+groovy>     void push(int elem){ 
+groovy>         Node newNode = new Node(elem); 
+groovy>         newNode.next = head; 
+groovy>         head = newNode; 
+groovy>         size++; 
+groovy>     } 
+groovy>     int top(){ 
+groovy>         if(head == null){ 
+groovy>             return -1; 
+groovy>         } 
+groovy>         return head.data; 
+groovy>     } 
+groovy>     int pop(){ 
+groovy>         if(head == null){ 
+groovy>             return -1; 
+groovy>         } 
+groovy>         int temp = head.data; 
+groovy>         head = head.next; 
+groovy>         size--; 
+groovy>         return temp; 
+groovy>     } 
+groovy> } 
+groovy> StackUsingLL st = new StackUsingLL() 
+groovy> st.push(1) 
+groovy> st.push(2) 
+groovy> st.push(3) 
+groovy> println "Size of stack: " + st.size() 
+groovy> println "Top of stack: " + st.top() 
+groovy> println "Stack Elements: " 
+groovy> while(!st.isEmpty()){println st.pop()} 
+ 
+Size of stack: 3
+Top of stack: 3
+Stack Elements: 
+3
+2
+1
+----------------------------------------------------------------------------------------------
+Ans 16:-
+groovy> HashMap map = ["Sarthak": 21, "Manish":24, "Hardik":22, "Uddesh":22, "Bhupender":22, "Divyaang":23,"Shivam":23, "Arapn":24, "Arjit": 23, "Ayushi":23, "Yukta":22] 
+groovy> map.eachWithIndex { key, value, i -> 
+groovy>     println "${i} - Name: ${key} , Age: ${value}" 
+groovy> } 
+ 
+0 - Name: Sarthak , Age: 21
+1 - Name: Manish , Age: 24
+2 - Name: Hardik , Age: 22
+3 - Name: Uddesh , Age: 22
+4 - Name: Bhupender , Age: 22
+5 - Name: Divyaang , Age: 23
+6 - Name: Shivam , Age: 23
+7 - Name: Arapn , Age: 24
+8 - Name: Arjit , Age: 23
+9 - Name: Ayushi , Age: 23
+10 - Name: Yukta , Age: 22
+----------------------------------------------------------------------------------------------
+Ans 17:-
+groovy> HashMap map = ["Sarthak": 21, "Manish":24, "Hardik":22, "Uddesh":22, "Bhupender":22, "Divyaang":23,"Shivam":23, "Arapn":24, "Arjit": 23, "Ayushi":23, "Yukta":22] 
+groovy> println "1st way" 
+groovy> map.each { entry -> 
+groovy>     println "Name: ${entry.key} , Age: ${entry.value}" 
+groovy> } 
+groovy> println "2st way" 
+groovy> map.eachWithIndex { entry, i -> 
+groovy>     println "${i} - Name: ${entry.key} , Age: ${entry.value}" 
+groovy> } 
+groovy> println "3st way" 
+groovy> map.each { key, value -> 
+groovy>     println "Name: ${key} , Age: ${value}" 
+groovy> } 
+groovy> println "4st way" 
+groovy> map.eachWithIndex { key, value, i -> 
+groovy>     println "${i} - Name: ${key} , Age: ${value}" 
+groovy> } 
+ 
+1st way
+Name: Sarthak , Age: 21
+Name: Manish , Age: 24
+Name: Hardik , Age: 22
+Name: Uddesh , Age: 22
+Name: Bhupender , Age: 22
+Name: Divyaang , Age: 23
+Name: Shivam , Age: 23
+Name: Arapn , Age: 24
+Name: Arjit , Age: 23
+Name: Ayushi , Age: 23
+Name: Yukta , Age: 22
+2st way
+0 - Name: Sarthak , Age: 21
+1 - Name: Manish , Age: 24
+2 - Name: Hardik , Age: 22
+3 - Name: Uddesh , Age: 22
+4 - Name: Bhupender , Age: 22
+5 - Name: Divyaang , Age: 23
+6 - Name: Shivam , Age: 23
+7 - Name: Arapn , Age: 24
+8 - Name: Arjit , Age: 23
+9 - Name: Ayushi , Age: 23
+10 - Name: Yukta , Age: 22
+3st way
+Name: Sarthak , Age: 21
+Name: Manish , Age: 24
+Name: Hardik , Age: 22
+Name: Uddesh , Age: 22
+Name: Bhupender , Age: 22
+Name: Divyaang , Age: 23
+Name: Shivam , Age: 23
+Name: Arapn , Age: 24
+Name: Arjit , Age: 23
+Name: Ayushi , Age: 23
+Name: Yukta , Age: 22
+4st way
+0 - Name: Sarthak , Age: 21
+1 - Name: Manish , Age: 24
+2 - Name: Hardik , Age: 22
+3 - Name: Uddesh , Age: 22
+4 - Name: Bhupender , Age: 22
+5 - Name: Divyaang , Age: 23
+6 - Name: Shivam , Age: 23
+7 - Name: Arapn , Age: 24
+8 - Name: Arjit , Age: 23
+9 - Name: Ayushi , Age: 23
+10 - Name: Yukta , Age: 22
+---------------------------------------------------------------------------------------------
+Ans 18:-
+groovy> def a = [a: 1, b: 3] 
+groovy> def b = [a: 2, c: 4] 
+groovy> def c = a + b 
+groovy> c.each{elem ,val -> println "${elem} : ${val}"} 
+ 
+a : 2
+b : 3
+c : 4
+---------------------------------------------------------------------------------------------
+Ans 19:-
+groovy> def a = [a: 1, b: 3] 
+groovy> def b = [a: 2, c: 4] 
+groovy> def c = a + b 
+groovy> println c.class 
+groovy> println c.getClass() 
+ 
+null
+class java.util.LinkedHashMap
+----------------------------------------------------------------------------------------------
+Ans 20:-
+groovy> Map m =['1':2,'2':3,'3':4,'2':5] 
+groovy> println m['2'] 
+ 
+5
+----------------------------------------------------------------------------------------------
+Ans 21:-
+groovy> Map m =['1':2,'2':3,'3':4,'2':5] 
+groovy> println m.containsKey('2') 
+ 
+true
+----------------------------------------------------------------------------------------------
+Ans 22:-
+groovy> Map m = ['Computing' : ['Computing':600, 'Information Systems':300],  
+groovy> 'Engineering':['Civil':200,'Mechanical':100],  
+groovy> 'Management': ['Management':800]] 
+groovy> m.each{key,val -> println "${key} : ${val}"} 
+groovy> println "Number of Departments: " + m.size() 
+groovy> Map comp = m.get('Computing') 
+groovy> println "Programs delivered by Computing Department: " + comp.size() 
+groovy> println "Students enrolled in Civil Enginerring Program: " + m.get('Engineering').get('Civil') 
+ 
+Computing : [Computing:600, Information Systems:300]
+Engineering : [Civil:200, Mechanical:100]
+Management : [Management:800]
+Number of Departments: 3
+Programs delivered by Computing Department: 2
+Students enrolled in Civil Enginerring Program: 200
+----------------------------------------------------------------------------------------------
